@@ -43,4 +43,18 @@ class Api {
       .then((result) => result)
       .catch((err) => console.log(err));
   }
+  
+  completed(id, completed) {
+    const JSONData = JSON.stringify({ id, completed });
+    
+    return (result = fetch(url, {
+      method: "PATCH",
+      body: JSONData,
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((result) => result.json())
+      .then((data) => data));
+  }
 }
