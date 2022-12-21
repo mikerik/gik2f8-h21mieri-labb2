@@ -1,16 +1,1 @@
-[
-  {
-    "id": 2,
-    "title": "Hej",
-    "description": "Hej igen",
-    "dueDate": "2012-03-04",
-    "completed": false
-  },
-  {
-    "id": 3,
-    "title": "En ny task",
-    "description": "Tjena",
-    "dueDate": "2019-01-01",
-    "completed": true
-  }
-]
+[{"id":2,"title":"task 1","description":"hej hej","dueDate":"2019-12-13","completed":false},{"id":5,"title":"task 4","description":"hej hej","dueDate":"2019-12-13","completed":true},{"id":8,"title":"task 7","description":"hej hej","dueDate":"2019-12-13","completed":true},{"id":9,"title":"task 42","description":"the meaning of life","dueDate":"1999-12-31","completed":false}]

@@ -3,7 +3,8 @@ class Api {
   constructor(url) {
     this.url = url;
   }
-  create(data) {
+
+  create = async (data) => {
     const JSONData = JSON.stringify(data);
     console.log(`Sending ${JSONData} to ${this.url}`);
     const request = new Request(this.url, {
@@ -13,38 +14,52 @@ class Api {
         "content-type": "application/json",
       },
     });
-    return fetch(request)
-      .then((result) => result.json())
-      .then((data) => data)
-      .catch((err) => console.log(err));
-  }
-  getAll() {
-    return fetch(this.url)
-      .then((result) => result.json())
-      .then((data) => data)
-      .catch((err) => console.log(err));
-  }
-  remove(id) {
+    try {
+      const result = await fetch(request);
+      const data = await result.json();
+      return data;
+    } catch (err) {
+      return err;
+    }
+  };
+
+  getAll = async () => {
+    try {
+      const result = await fetch(this.url);
+      const data = await result.json();
+      return data;
+    } catch (err) {
+      return err;
+    }
+  };
+
+  remove = async (id) => {
     console.log(`Removing task with id ${id}`);
-    return fetch(`${this.url}/${id}`, {
-      method: "DELETE",
-    })
-      .then((result) => result)
-      .catch((err) => console.log(err));
-  }
-  completed(id, completed) {
-    const JSONData = JSON.stringify({
-      id,
-      completed,
-    });
-    return (result = fetch(url, {
-      method: "PATCH",
-      body: JSONData,
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((result) => result.json())
-      .then((data) => data));
-  }
+    try {
+      const result = await fetch(`${this.url}/${id}`, {
+        method: "DELETE",
+      });
+      return result;
+    } catch (err) {
+      return err;
+    }
+  };
+
+  update = async (id, data) => {
+    const JSONData = JSON.stringify(data);
+
+    try {
+      const response = await fetch(`${this.url}/${id}`, {
+        method: "PATCH",
+        body: JSONData,
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      const result = await response.json();
+      return result;
+    } catch (err) {
+      return err;
+    }
+  };
 }

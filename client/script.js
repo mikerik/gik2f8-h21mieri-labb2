@@ -74,9 +74,10 @@ function saveTask() {
   });
 }
 
-function renderList() {
+renderList = async () => {
   console.log("rendering");
-  api.getAll().then((tasks) => {
+  try {
+    const tasks = await api.getAll();
     todoListElement.innerHTML = "";
     if (tasks && tasks.length > 0) {
       tasks.sort((a, b) => {
@@ -98,36 +99,36 @@ function renderList() {
         todoListElement.insertAdjacentHTML("beforeend", renderTask(task));
       });
     }
-  });
-}
+  } catch (err) {
+    return err;
+  }
+};
 
 function renderTask({ id, title, description, dueDate, completed }) {
   let html = `
     <li class="select-none mt-2 p-3 ${
-      completed ? "bg-emerald-200" : ""
-    } rounded-md border-2 border-violet-400 hover:border-fuchsia-500"
-              style="box-shadow:2px 2px 8px #3b3b3b" >
+      completed ? "bg-green-500" : "bg-red-500"
+    } border-[0.25rem] border-black hover:bg-blue-500">
       <div class="flex items-center">
         <div id="inputContainer${id}">
           <input type="checkbox" ${
             completed ? "checked" : ""
-          } onclick="updateTask(${id}) "id="checkBox${id}" 
-            class=" appearance-none rounded-md border-2 border-violet-400 bg-violet-300 checked:bg-green-500 hover:bg-gradient-to-br from-teal-400 via-violet-500 to-fuchsia-500"/>
+          } onclick="updateTask(${id}) "id="checkBox${id}" class="appearance-none border-[0.25rem] border-black bg-red-500 checked:bg-green-500 hover:bg-yellow-500"/>
           <style>
             input[type="checkbox"]:checked:before{
               content: "✔";
-              font-size: 14px;
+              font-size: 12px;
             }
             input[type="checkbox"]:before{
               content: "✖";
-              font-size: 14px;
+              font-size: 12px;
             }
           </style>
         </div> 
-        <h3 class=" pl-4 mb-3 flex-1 text-xl font-bold text-slate-900 uppercase">${title}</h3>
+        <h3 class="pl-4 mb-3 flex-1 text-xl font-bold text-black">${title}</h3>
         <div>
-          <span>${dueDate}</span>
-          <button onclick="deleteTask(${id})" class="inline-block bg-violet-300 text-md text-slate-900 border-2 border-violet-400 px-3 py-1 rounded-md ml-2 hover:bg-gradient-to-br from-teal-400 via-violet-500 to-fuchsia-500">Ta bort</button>
+          <span><b>Deadline: ${dueDate}</b></span>
+          <button onclick="deleteTask(${id})" class="inline-block bg-gray-300 text-md text-slate-900 border-[0.25rem] border-black px-3 py-1 ml-2 hover:bg-white">Ta bort</button>
         </div>
       </div>`;
   description &&
@@ -139,24 +140,33 @@ function renderTask({ id, title, description, dueDate, completed }) {
   return html;
 }
 
-function deleteTask(id) {
-  api.remove(id).then((result) => {
+deleteTask = async (id) => {
+  try {
+    await api.remove(id);
     renderList();
-  });
-}
+  } catch (err) {
+    return err;
+  }
+};
 
-function updateTask(id) {
+updateTask = async (id) => {
   const checkBox = document.getElementById(`checkBox${id}`);
-  if (checkBox.checked == true) {
-    const done = {
+  let data;
+  if (checkBox.checked) {
+    data = {
       completed: true,
     };
-    api.update(id, done).then((result) => renderList());
   } else {
-    const unfinished = {
+    data = {
       completed: false,
     };
-    api.update(id, unfinished).then((result) => renderList());
   }
-}
+  try {
+    await api.update(id, data);
+    renderList();
+  } catch (err) {
+    return err;
+  }
+};
+
 renderList();
