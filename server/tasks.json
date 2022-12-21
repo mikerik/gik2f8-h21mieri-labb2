@@ -1,1 +1,16 @@
-[{"id":2,"title":"Hej","description":"Hej igen","dueDate":"2012-03-04","completed":false},{"id":3,"title":"En ny task","description":"Tjena","dueDate":"2019-01-01","completed":true}]
+[
+  {
+    "id": 2,
+    "title": "Hej",
+    "description": "Hej igen",
+    "dueDate": "2012-03-04",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "title": "En ny task",
+    "description": "Tjena",
+    "dueDate": "2019-01-01",
+    "completed": true
+  }
+]

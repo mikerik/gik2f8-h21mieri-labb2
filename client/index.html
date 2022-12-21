@@ -2,81 +2,62 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="shortcut icon" href="data:image/x-icon;" type="image/x-icon" />
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="data:image/x-icon;" rel="shortcut icon" type="image/x-icon">
   <title>ToDo-list</title>
 </head>
 
 <body>
-  <main id="root" class="bg-yellow-100 border-2 border-fuchsia-500 grid h-screen place-items-center">
+  <main class="bg-yellow-100 border-2 border-fuchsia-500 grid h-screen place-items-center" id="root">
     <div>
       <h1 class="border-2 border-fuchsia-500 text-center mb-10 text-8xl text-slate-900 shadow-text"
-        style="text-shadow:4px 4px 8px #2c2c2e">
-        ToDo-list
-      </h1>
-
+        style="text-shadow:4px 4px 8px #2c2c2e">ToDo-list</h1>
       <section
         class="border-2 border-black flex gap-10 max-w-full min-w-fit xl:w-4/5 mx-2 xl:mx-auto bg-white bg-opacity-75 p-5 rounded-lg"
         style="box-shadow:10px 10px 30px #3b3b3b">
-
         <section class="flex-1 border-2 border-red-500">
           <h2 class="mb-6 text-3xl text-slate-900" style="text-shadow:4px 4px 5px #606061">Add task</h2>
-
           <form id="todoForm" name="todoForm">
             <section class="mb-2 border-2 border-green-500">
-              <label class="block pr-5 mb-2 text-xl" style="text-shadow:4px 4px 5px #606061" for="title">Title</label>
-
-              <p class="message text-md text-rose-600 mb-2 hidden">
-                Error message
-              </p>
-
-              <input type="text" id="title" name="title"
+              <label class="block pr-5 mb-2 text-xl" for="title" style="text-shadow:4px 4px 5px #606061">Title</label>
+              <p class="message text-md text-rose-600 mb-2 hidden">Error message</p><input
                 class="w-full rounded-md border-violet-400 border-2 focus-within:outline-none focus:border-fuchsia-500 px-4 py-2"
-                style="text-shadow:4px 4px 5px #606061" />
-            </section>
-
-            <section class="mb-2">
-              <label class="block pr-5 mb-2 text-xl" style="text-shadow:4px 4px 5px #606061"
-                for="description">Description</label>
-              <p class="message text-md text-rose-600 mb-2 hidden">
-                Error message
-              </p>
-              <textarea maxlength="500" rows="5" id="description" name="description"
-                class="resize-none w-full rounded-md border-violet-400 border-2 focus-within:outline-none focus:border-fuchsia-500 px-4 py-2"></textarea>
+                id="title" name="title" style="text-shadow:4px 4px 5px #606061" type="text">
             </section>
             <section class="mb-2">
-              <label class="block pr-5 mb-2 text-xl" style="text-shadow:4px 4px 5px #606061" for="title">Due
+              <label class="block pr-5 mb-2 text-xl" for="description"
+                style="text-shadow:4px 4px 5px #606061">Description</label>
+              <p class="message text-md text-rose-600 mb-2 hidden">Error message</p>
+              <textarea
+                class="resize-none w-full rounded-md border-violet-400 border-2 focus-within:outline-none focus:border-fuchsia-500 px-4 py-2"
+                id="description" maxlength="500" name="description" rows="5"></textarea>
+            </section>
+            <section class="mb-2">
+              <label class="block pr-5 mb-2 text-xl" for="title" style="text-shadow:4px 4px 5px #606061">Due
                 date</label>
-              <p class="message text-md text-rose-600 mb-2 hidden">
-                Error message
-              </p>
-              <input type="date" id="dueDate" name="dueDate"
-                class="w-full rounded-md border-violet-400 border-2 focus-within:outline-none focus:border-fuchsia-500 px-4 py-2" />
-            </section>
-
-            <button name="submitTodoForm"
+              <p class="message text-md text-rose-600 mb-2 hidden">Error message</p><input
+                class="w-full rounded-md border-violet-400 border-2 focus-within:outline-none focus:border-fuchsia-500 px-4 py-2"
+                id="dueDate" name="dueDate" type="date">
+            </section><button
               class="rounded-md bg-violet-300 border-2 border-violet-400 hover:bg-gradient-to-br from-teal-400 via-violet-500 to-fuchsia-500 px-4 py-1"
-              type="submit">
-              Spara
-            </button>
+              name="submitTodoForm" type="submit">Spara</button>
           </form>
         </section>
-
         <section class="min-w-fit flex-1 p-10 m-10">
           <h2 class="mb-6 text-3xl text-slate-900" style="text-shadow:4px 4px 5px #606061">Tasks</h2>
-
-          <ul id="todoList">
-
-          </ul>
+          <ul id="todoList"></ul>
         </section>
       </section>
     </div>
   </main>
-  <script src="Api.js"></script>
-  <script src="script.js"></script>
+  <script src="Api.js">
+  </script>
+  <script src="script.js">
+  </script>
 </body>
 
 </html>
